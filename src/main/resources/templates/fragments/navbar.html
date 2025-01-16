@@ -1,0 +1,77 @@
+<div th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler ms-3" type="button"
+                data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse ms-3" id="navbarNav">
+
+            <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link" th:href="@{/}">Inicio</a></li>
+                <li class="nav-item active"><a class="nav-link" th:href="@{/question/all}">Preguntas</a></li>
+                <li class="nav-item active"><a class="nav-link" th:href="@{/question-statistics}">Estadísticas de preguntas</a></li>
+                <li class="nav-item dropdown"
+                    th:if="${user != null and user.userRole.name() == 'ADMIN'}"><a
+                    class="nav-link dropdown-toggle" href="#" id="questionsDropdown"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Administración </a>
+                    <ul class="dropdown-menu" aria-labelledby="questionsDropdown">
+                        <li><a class="dropdown-item" th:href="@{/question/new}">Crear nueva pregunta</a></li>
+                        <li><a class="dropdown-item" th:href="@{/question/new/question-file}">Añadir archivo de preguntas</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ms-auto me-5" th:if="${user == null}">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/oauth2/authorization/google}">Iniciar sesión</a>
+                </li>
+            </ul>
+
+
+            <ul class="navbar-nav ms-auto me-5" th:if="${user != null}">
+                <li class="nav-item dropdown"><a
+                        class="nav-link dropdown-toggle" href="#" id="userDropdown"
+                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span th:text="${user.name}"></span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" th:href="@{/profile}">Perfil</a></li>
+                        <li>
+                            <a class="dropdown-item" th:if="${user != null and user.userRole.name() == 'USER'}"
+                               href="#" data-bs-toggle="modal" data-bs-target="#passwordModalPromoteUser">Promocionar a Admin</a>
+                        </li>
+                        <li><a class="dropdown-item" href="#" onclick="logout()">Cerrar sesión</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <div class="modal fade text-black" id="passwordModalPromoteUser" tabindex="-1" aria-labelledby="passwordModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="passwordModalLabel">Autorización requerida</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/promote-user}" method="post">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="adminPassword" class="form-label">Introduce la contraseña para promocionar a administrador:</label>
+                            <input type="password" class="form-control" id="adminPassword" name="password" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class=" btn btn-confirm">Promocionar</button>
+                        <button type="button" class="btn btn-cancel" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

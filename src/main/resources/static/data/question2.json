@@ -1,0 +1,20 @@
+[
+  {
+    "question": "En Java, una clase puede extender múltiples clases a la vez.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "El método 'main' es el punto de entrada de una aplicación Java.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "En Java, se puede crear una instancia de una clase abstracta.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  }
+]

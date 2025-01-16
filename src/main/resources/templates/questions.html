@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark questions">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<div th:if="${success}" class="alert alert-success" role="alert">
+		<span th:text="${success}"></span>
+	</div>
+
+	<div th:if="${error}" class="alert alert-danger" role="alert">
+		<span th:text="${error}"></span>
+	</div>
+
+	<main class="container mt-5">
+		<h2>Listado de Preguntas</h2>
+
+		<p class="mt-5" th:if="${questions.isEmpty()}">No hay ninguna
+			pregunta disponible con ese ID.</p>
+
+		<table th:if="${!questions.isEmpty()}"
+			class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Pregunta</th>
+					<th>Categoría</th>
+					<th>Tipo de Pregunta</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="question : ${questions}">
+					<td><a th:href="@{/question/id/{id}(id=${question.id})}"
+						class="text-reset" role="button"> <span
+							th:text="${question.id}"></span></a></td>
+					<td th:text="${question.question}"></td>
+					<td>           <a th:href="@{/question/all(page=0, size=10, category=${question.category.name()})}"
+       class="text-reset" role="button"><span
+							th:text="${question.category.name()}"></span></a></td>
+					<td th:text="${question.typeOfQuestion.translate}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+<nav aria-label="Page navigation" th:if="${!questions.isEmpty()}">
+    <ul class="pagination justify-content-center">
+        <!-- Botón 'Anterior' -->
+        <li class="page-item" th:class="${currentPage == 0} ? 'disabled'">
+            <a class="page-link text-black"
+               th:href="@{/question/all(page=${currentPage - 1}, size=${size}, category=${category})}"
+               tabindex="-1">Anterior</a>
+        </li>
+
+        <!-- Páginas numeradas -->
+        <li class="page-item" th:each="i : ${pageNumbers}"
+            th:class="${i == currentPage} ? 'active'">
+            <a class="page-link text-black page-active"
+               th:href="@{/question/all(page=${i}, size=${size}, category=${category})}"
+               th:text="${i + 1}"></a>
+        </li>
+
+        <!-- Botón 'Siguiente' -->
+        <li class="page-item" th:class="${currentPage == totalPages - 1} ? 'disabled'">
+            <a class="page-link text-black"
+               th:href="@{/question/all(page=${currentPage + 1}, size=${size}, category=${category})}">Siguiente</a>
+        </li>
+    </ul>
+</nav>
+
+
+		<p th:if="${activateBackButton}">
+			<a th:href="@{/question/all}" class="mb-5 btn btn-warning fw-bold">Volver
+				a la lista principal</a>
+		</p>
+
+
+
+	</main>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

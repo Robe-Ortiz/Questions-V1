@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark questions">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<main class="container mt-5">
+		<h2>Información sobre las preguntas de la partida</h2>
+		<div th:each="question, status : ${questions}"
+			class="question-container mb-4">
+			<div th:if="${modifiedQuestions.contains(question)}" class="alert alert-warning">
+				<strong>¡Atención!</strong> Esta pregunta fue modificada después de	la fecha de registro de la partida.
+			</div>
+			<div th:if="${!question.active}" class="alert alert-danger">
+   				<strong>¡Advertencia!</strong> Esta pregunta está desactivada.
+			</div>
+			<table class="mb-5 table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Pregunta</th>
+						<th>Categoría</th>
+						<th>Tipo de Pregunta</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${question.id}"></td>
+						<td th:text="${question.question}"></td>
+						<td th:text="${question.category}"></td>
+						<td th:text="${question.typeOfQuestion.translate}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="question-divider mb-4"></div>
+			<div class="user-answer mb-4">
+				<h5>
+					Respuesta del usuario:
+					<p
+						th:text="${answers[status.index] == 'true' ? 'Verdadero' :
+        				 (answers[status.index] == 'false' ? 'Falso' : answers[status.index])}"></p>
+				</h5>
+			</div>
+			<div class="question-divider mb-4"></div>
+
+			<div>
+				<div th:if="${question.typeOfQuestion.name() == 'TRUE_OR_FALSE'}">
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Respuesta Correcta</th>
+							</tr>
+						</thead>
+						<tbody>
+							<td th:text="${question.answer ? 'Verdadero' : 'Falso'}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+				<div
+					th:if="${question.typeOfQuestion.name() == 'MULTIPLE_QUESTION'}">
+					<table class="mb-5 table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Respuestas Incorrectas</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="incorrectAnswer : ${question.incorrectAnswers}">
+								<td
+									th:text="${incorrectAnswer != null ? incorrectAnswer : 'Respuesta no disponible'}"></td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th>Respuestas Correctas</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="correctAnswer : ${question.correctAnswers}">
+								<td
+									th:text="${correctAnswer != null ? correctAnswer : 'Respuesta no disponible'}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<a th:href="@{/profile}" class="mb-5 btn btn-light fw-bold">Volver
+			al perfil</a>
+	</main>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>
+

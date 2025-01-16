@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<div th:replace="~{fragments/header :: head}"></div>
+<link href="/css/profile.css" rel="stylesheet">
+</head>
+
+<body class="bg-dark text-white">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<div class="profile-container">
+		<div class="profile-card">
+			<img th:src="@{${user.profilePicture}}" alt="Foto de perfil"
+				class="profile-image">
+			<form action="/update-user-name" method="post">
+				<h2 class="welcome-message">Bienvenid@</h2>
+				<h2 class="welcome-message"><input type="text" name="name" th:value="${user.name}"class="name-input" disabled required></h2>
+				<h4	th:text="'Fecha de registro: ' + ${#temporals.format(user.registrationDate, 'dd-MM-yyyy')}"></h4>
+				<button type="button" class="edit-btn fw-bold" onclick="updateName()">Actualizar nombre</button>
+				<button type="submit" class="save-btn" style="display: none;">Guardar cambios</button>
+			</form>
+		</div>
+	</div>
+	
+<div class="container">
+    <h1 class="mt-4 mb-4 text-center">Listado de partidas</h1>
+    <h4 class="mt-4 mb-4 text-center" th:text="'Total de partidas: ' + ${totalGames}"></h4>
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Categoría</th>
+                <th>Cantidad de preguntas</th>
+                <th>Respuestas Correctas</th>
+                <th>Respuestas Incorrectas</th>
+                <th>Fecha de Registro</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="game : ${games}" 
+                th:classappend="${game.wrongAnswers == 0 ? 'table-success' : 
+                                 (game.wrongAnswers > game.correctAnswers ? 'table-danger' : 'table-warning')}">
+                <td><a th:href="@{/show-game/{id}(id=${game.id})}"
+                    class="text-reset" role="button"> <span
+                    th:text="${game.id}"></span></a></td>
+                <td th:text="${game.categoryOfQuestions}">Categoría</td>
+                <td th:text="${game.listOfQuestions.size()}">Tamaño de la Lista</td>
+                <td th:text="${game.correctAnswers}">Respuestas Correctas</td>
+                <td th:text="${game.wrongAnswers}">Respuestas Incorrectas</td>
+                <td th:text="${#temporals.format(game.registrationDate, 'dd-MM-yyyy HH:mm')}">Fecha de Registro</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <nav aria-label="Page navigation" th:if="${totalGames > 0}">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:class="${currentPage == 0} ? 'disabled'">
+                <a class="page-link text-black"
+                   th:href="@{/profile(page=${currentPage - 1}, size=${size})}"
+                   tabindex="-1">Anterior</a>
+            </li>
+
+ 
+            <li class="page-item" th:each="i : ${pageNumbers}"
+                th:class="${i == currentPage} ? 'active'">
+                <a class="page-link text-black page-active"
+                   th:href="@{/profile(page=${i}, size=${size})}"
+                   th:text="${i + 1}"></a>
+            </li>
+
+
+            <li class="page-item" th:class="${currentPage == totalPages - 1} ? 'disabled'">
+                <a class="page-link text-black"
+                   th:href="@{/profile?(page=${currentPage + 1}, size=${size})}">Siguiente</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+	<script src="/js/snow.js"></script>
+	<script src="/js/profile.js"></script>
+</body>
+</html>

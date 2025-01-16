@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<div th:replace="~{fragments/header :: head}"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-dark text-white">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	
+    <div class="container d-flex flex-column align-items-center justify-content-start min-vh-100">
+        <h2 class="text-warning mb-4">Estadísticas de preguntas</h2>
+        <div class="d-flex justify-content-center" style="width: 100%; height: auto;">
+            <canvas id="myDoughnutChart" width="800" height="800"></canvas>
+        </div>
+    </div>
+	
+    <script th:inline="javascript">
+        var categories = /*[[${categories}]]*/ [];
+        var questionCounts = /*[[${numberOfQuestionsPerCategory}]]*/ [];
+    </script>
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+	<script src="/js/graphic.js"></script>
+</body>
+</html>

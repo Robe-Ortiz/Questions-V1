@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark questions">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<div th:if="${error}" class="alert alert-danger" role="alert">
+		<span th:text="${error}"></span>
+	</div>
+
+	<main class="container mt-5 text-center">
+		<h1 class="mb-5">Cargar archivo JSON de Preguntas</h1>
+
+
+		<form method="post" action="/question/upload"
+			enctype="multipart/form-data">
+			<div>
+				<input class="btn btn-light" type="file" id="file" name="file"
+					accept=".json" required>
+			</div>
+			<button class="mt-5 btn btn-light" type="submit">Subir</button>
+		</form>
+
+	</main>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <div th:replace="~{fragments/header :: head}"></div>
+</head>
+<body class="error error-404">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    <h1>Upss</h1>
+    <h2>No hemos encontrado lo que buscabas.</h2>
+    <a href="/" class="btn btn-warning fw-bold mt-5">Volver al inicio</a>
+    <div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

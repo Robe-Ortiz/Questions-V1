@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<div th:replace="~{fragments/header :: head}"></div>
+</head>
+<body class="bg-dark">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<div class="container mt-5">
+
+ 
+		<div th:if="${question}" class="card">
+			<div class="card-body">
+
+				<p class="card-text text-center fw-bold fs-4"
+					th:text="${question.question}"></p>
+				<hr class="border border-warning my-4">
+
+				<form action="/game/answer" method="post">
+					<div th:if="${question.typeOfQuestion.name() == 'TRUE_OR_FALSE'}">
+						<div class="d-flex justify-content-center">
+							<div class="form-check mx-3  fs-4">
+								<input class="form-check-input" type="radio" name="answer"
+									id="true" value="true"> <label class="form-check-label"
+									for="true"> Verdadero </label>
+							</div>
+							<div class="form-check mx-3 fs-4">
+								<input class="form-check-input" type="radio" name="answer"
+									id="false" value="false"> <label
+									class="form-check-label" for="false"> Falso </label>
+							</div>
+						</div>
+					</div>
+
+					<div
+						th:if="${question.typeOfQuestion.name() == 'MULTIPLE_QUESTION' and not showMultipleCorrectAnswers}">
+						<div class="row justify-content-center">
+							<div th:each="answer : ${answers}"
+								class="col-12 col-md-6 mb-3">
+								<div class="form-check">
+									<input class="form-check-input" type="radio" name="answer"
+										th:id="${answer}" th:value="${answer}"> <label
+										class="form-check-label fs-4" th:for="${answer}"
+										th:text="${answer}"></label>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					<div th:if="${question.typeOfQuestion.name() == 'MULTIPLE_QUESTION' and showMultipleCorrectAnswers}">
+					    <div class="row justify-content-center">
+					        <div th:each="answer : ${answers}" class="col-12 col-md-6 mb-3">
+					            <div class="form-check">
+					                <input class="form-check-input" type="checkbox" name="answer"
+					                    th:id="${answer}" th:value="${answer}"> 
+					                <label class="form-check-label fs-4" th:for="${answer}" th:text="${answer}"></label>
+					            </div>
+					        </div>
+					    </div>					    
+					</div>
+										
+
+					<div class="d-flex justify-content-center">
+						<button id="submitButton" type="submit"
+							class="btn btn-warning fw-bold mt-3 fs-5" disabled>Responder</button>
+					</div>
+				</form>
+			</div>
+		</div>
+														<h4 th:if="${question.typeOfQuestion.name() == 'MULTIPLE_QUESTION' and showMultipleCorrectAnswers}" 
+					class="text-center text-warning mt-4">Dos respuestas correctas</h4>
+
+		<div th:replace="~{fragments/scripts :: scripts}"></div>
+		<script src="/js/quizFormValidation.js"></script>
+</body>
+</html>

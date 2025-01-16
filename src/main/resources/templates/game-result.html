@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark">
+
+	<!-- Navbar -->
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+
+	<div class="container mt-3 d-flex justify-content-center">
+		<div class="text-white text-center">
+			<h2 class="fs-1">Resultados</h2>
+			<hr class="border border-warning my-4">
+			<p class="fs-4"><strong>Respuestas Correctas:</strong> <span th:text="${correctAnswers}"></span></p>
+			<p class="fs-4"><strong>Respuestas Incorrectas:</strong> <span th:text="${wrongAnswers}"></span></p>
+			<a href="/game/category" class="btn btn-warning fs-4">Jugar de nuevo</a>
+		</div>
+	</div>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+<script src="/js/confetti.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <div th:replace="~{fragments/header :: head}"></div>
+</head>
+<body class="bg-dark">
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    
+    <div class="container text-center mt-5">
+    		<div th:if="${error}" class="alert alert-danger" role="alert">
+			<p th:text="${error}"></p>
+		</div>
+        <h1 class="text-white mb-5">Opciones de la partida</h1>
+
+        <form action="/game/number-of-questions" method="get" class="mt-4" th:if="${showCategoryForm}">
+            <h3 class="text-white">Selecciona una categoría</h3>
+            <div class="d-flex flex-column align-items-center">
+                <div th:each="category : ${categories}" class="w-100 mb-3" style="max-width: 300px;">
+                    <button type="submit" name="category" th:value="${category}" 
+                            th:text="${category}" class="btn btn-warning w-100 fw-bold"></button>
+                </div>
+            </div>
+        </form>
+
+        <div th:if="${showNumberOfQuestionsForm}">
+            <h3 class="text-white">Selecciona la cantidad de preguntas</h3>
+            <form action="/game/play" method="get" class="mt-4">
+                <input type="hidden" name="category" th:value="${category}">
+                
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" name="numberOfQuestions" value="3" class="btn btn-warning mx-2 fw-bold">3 Preguntas</button>
+                    <button type="submit" name="numberOfQuestions" value="5" class="btn btn-warning mx-2 fw-bold">5 Preguntas</button>
+                    <button type="submit" name="numberOfQuestions" value="10" class="btn btn-warning mx-2 fw-bold">10 Preguntas</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

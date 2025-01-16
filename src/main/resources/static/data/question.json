@@ -1,0 +1,226 @@
+[
+  {
+    "question": "En Java, una clase puede extender múltiples clases a la vez.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "El método 'main' es el punto de entrada de una aplicación Java.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "En Java, se puede crear una instancia de una clase abstracta.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "Los métodos estáticos pueden acceder a miembros no estáticos de una clase en Java.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "En Java, el tipo de datos 'int' puede almacenar valores decimales.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "Una interfaz en Java puede tener métodos con implementación.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "Los objetos en Java siempre se pasan por valor.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "Java permite la sobrecarga de operadores como en otros lenguajes como C++.",
+    "answer": false,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "En Java, una variable de tipo 'String' es inmutable.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+    "question": "El uso de 'final' en Java implica que la variable o método no se puede modificar.",
+    "answer": true,
+    "typeOfQuestion": "TRUE_OR_FALSE",
+    "category": "PROGRAMACIÓN"
+  },
+  {
+      "question": "¿Cuál de las siguientes afirmaciones sobre las interfaces en Java es falsa?",
+      "incorrectAnswers": [
+        "Una interfaz puede contener métodos con implementación.",
+        "Una clase puede implementar múltiples interfaces.",
+        "Una interfaz puede extender otras interfaces."
+      ],
+      "correctAnswers": ["Una interfaz puede tener atributos."],
+      "typeOfQuestion": "MULTIPLE_QUESTION",
+      "category": "PROGRAMACIÓN"
+    },
+    {
+      "question": "¿Qué palabra clave se utiliza para heredar una clase en Java?",
+      "incorrectAnswers": [
+        "implements",
+        "include",
+        "inherits"
+      ],
+      "correctAnswers": ["extends"],
+      "typeOfQuestion": "MULTIPLE_QUESTION",
+      "category": "PROGRAMACIÓN"
+    },
+    {
+      "question": "¿Cuál de las siguientes afirmaciones sobre los constructores es verdadera?",
+      "incorrectAnswers": [
+        "Un constructor puede ser estático.",
+        "Los constructores deben llamarse explícitamente desde fuera de la clase.",
+        "Un constructor puede tener un tipo de retorno."
+      ],
+      "correctAnswers": [
+        "Los constructores se ejecutan automáticamente al crear un objeto.",
+        "Un constructor puede ser sobrecargado."
+      ],
+      "typeOfQuestion": "MULTIPLE_QUESTION",
+      "category": "PROGRAMACIÓN"
+    },
+    {
+      "question": "¿Qué excepción se lanza cuando intentas acceder a un índice inexistente en un arreglo?",
+      "incorrectAnswers": [
+        "NullPointerException",
+        "ClassCastException",
+        "IOException",
+        "ArithmeticException"
+      ],
+      "correctAnswers": ["ArrayIndexOutOfBoundsException"],
+      "typeOfQuestion": "MULTIPLE_QUESTION",
+      "category": "PROGRAMACIÓN"
+    },
+    {
+      "question": "¿Cuál de las siguientes palabras clave se utiliza para definir una constante en Java?",
+      "incorrectAnswers": [
+        "finalize",
+        "static",
+        "const"
+      ],
+      "correctAnswers": [
+        "final",
+        "static final"
+      ],
+      "typeOfQuestion": "MULTIPLE_QUESTION",
+      "category": "PROGRAMACIÓN"
+    },
+	{
+	  "question": "¿Cuál de las siguientes opciones corresponde a una provincia de España?",
+	  "incorrectAnswers": [
+	    "Gran Canaria",
+	    "Fuenlabrada",
+	    "Alcorcón",
+	    "San Fernando",
+	    "Benidorm",
+	    "Elda",
+	    "Torrevieja",
+	    "Algeciras",
+	    "Jerez de la Frontera",
+	    "Barbate",
+	    "Alcoy",
+	    "Mérida",
+	    "Telde",
+	    "Arganda del Rey",
+	    "Parla",
+	    "Majadahonda",
+	    "Villaviciosa de Odón",
+	    "Aranda de Duero",
+	    "Móstoles",
+	    "Sanlúcar de Barrameda",
+	    "Motril",
+	    "Estepona",
+	    "Marbella",
+	    "Ronda",
+	    "Torrox",
+	    "Antequera",
+	    "Águilas",
+	    "Lorca",
+	    "Ponferrada",
+	    "Ribadeo",
+	    "Oropesa",
+	    "San Vicente del Raspeig",
+	    "Villarreal",
+	    "Manresa",
+	    "Vilafranca del Penedès",
+	    "Calella",
+	    "Blanes",
+	    "San Sebastián de los Reyes",
+	    "Tres Cantos",
+	    "Pozuelo de Alarcón",
+	    "Santiago de Compostela",
+	    "Cullera",
+	    "Denia"
+	  ],
+	  "correctAnswers": [
+	    "Álava",
+	    "Albacete",
+	    "Alicante",
+	    "Almería",
+	    "Asturias",
+	    "Ávila",
+	    "Badajoz",
+	    "Barcelona",
+	    "Burgos",
+	    "Cáceres",
+	    "Cádiz",
+	    "Cantabria",
+	    "Castellón",
+	    "Ciudad Real",
+	    "Córdoba",
+	    "Cuenca",
+	    "Gerona",
+	    "Granada",
+	    "Guadalajara",
+	    "Guipúzcoa",
+	    "Huelva",
+	    "Huesca",
+	    "Islas Baleares",
+	    "Jaén",
+	    "La Coruña",
+	    "La Rioja",
+	    "Las Palmas",
+	    "León",
+	    "Lérida",
+	    "Lugo",
+	    "Madrid",
+	    "Málaga",
+	    "Murcia",
+	    "Navarra",
+	    "Orense",
+	    "Palencia",
+	    "Pontevedra",
+	    "Salamanca",
+	    "Santa Cruz de Tenerife",
+	    "Segovia",
+	    "Sevilla",
+	    "Soria",
+	    "Tarragona",
+	    "Teruel",
+	    "Toledo",
+	    "Valencia",
+	    "Valladolid",
+	    "Vizcaya",
+	    "Zamora",
+	    "Zaragoza"
+	  ],
+	  "typeOfQuestion": "MULTIPLE_QUESTION",
+	  "category": "GEOGRAFÍA"
+	}
+]

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark questions">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<main class="container mt-5">
+		<h2>Información sobre la pregunta</h2>
+		<div th:if="${question != null}">
+			<table class="mb-5 table table-striped table-bordered">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Pregunta</th>
+						<th>Categoría</th>
+						<th>Tipo de Pregunta</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${question.id}"></td>
+						<td th:text="${question.question}"></td>
+						<td th:text="${question.category}"></td>
+						<td th:text="${question.typeOfQuestion.translate}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<div>
+
+					<div th:if="${question.typeOfQuestion.name() == 'TRUE_OR_FALSE'}">
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Respuesta Correcta</th>
+								</tr>
+							</thead>
+							<tbody>
+								<td th:text="${question.answer ? 'Verdadero' : 'Falso'}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+
+					<div
+						th:if="${question.typeOfQuestion.name() == 'MULTIPLE_QUESTION'}">
+						<table class="mb-5 table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Respuestas Incorrectas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="incorrectAnswer : ${question.incorrectAnswers}">
+									<td
+										th:text="${incorrectAnswer != null ? incorrectAnswer : 'Respuesta no disponible'}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+						<table class="table table-striped table-bordered">
+							<thead>
+								<tr>
+									<th>Respuestas Correctas</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="correctAnswer : ${question.correctAnswers}">
+									<td
+										th:text="${correctAnswer != null ? correctAnswer : 'Respuesta no disponible'}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<p th:if="${question == null}">No hay ninguna pregunta disponible
+			con ese ID.</p>
+
+		<a th:href="@{/question/all}" class="mb-5 btn btn-light fw-bold">Volver
+			a la lista principal</a> <a
+			th:href="@{/question/edit/{id}(id=${question.id})}"
+			class="mb-5 btn btn-warning fw-bold">Modificar Información</a>
+		<form th:action="@{/question/desactive/{id}(id=${question.id})}"
+			method="post" class="d-inline">
+			<button type="submit" class="mb-5 btn btn-danger fw-bold">Desactivar
+				Pregunta</button>
+		</form>
+	</main>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

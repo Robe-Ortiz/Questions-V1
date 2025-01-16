@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark questions">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+	<main class="container mt-5">
+		<h2 th:if="${stage == 'first'}">Incluir nueva pregunta</h2>
+		<h2 th:if="${stage == 'second'}">Completar detalles de la
+			pregunta</h2>
+
+		<!-- First Stage -->
+		<form id="form-pregunta" th:if="${stage == 'first'}"
+			th:action="@{/question/new}" method="post">
+			
+			<div class="mb-3 w-25">
+				<label class="form-label">Tipo de Pregunta</label> <select
+					class="form-select" name="questionType" required>
+					<option value="" selected disabled>Selecciona el tipo de
+						pregunta</option>
+					<option value="MULTIPLE_QUESTION">Opción Múltiple</option>
+					<option value="TRUE_OR_FALSE">Verdadero o Falso</option>
+				</select>
+			</div>
+			
+			<div class="mb-3 w-25">
+				<label class="form-label">Categoría</label> <select
+					class="form-select" name="category" required>
+					<option value="" selected disabled>Selecciona la categoría</option>
+					<option th:each="category : ${categories}" th:value="${category}"
+						th:text="${category}"></option>
+				</select>
+			</div>
+			<button type="submit" class="mb-5 btn btn-light fw-bold">Siguiente</button>
+		</form>
+		<!--Second Stage -->
+		<form
+			th:if="${stage == 'second' && questionType == 'MULTIPLE_QUESTION'}"
+			th:action="@{/question/save}" method="post">
+			<input type="hidden" name="questionType" value="MULTIPLE_QUESTION">
+			<input type="hidden" name="category" th:value="${category}">
+			<div class="mb-3">
+				<label for="question" class="form-label">Escribe la pregunta</label>
+				<input type="text" id="question" name="question"
+					class="form-control" required>
+			</div>
+			<div class="mb-3">
+				<label for="correct-answers" class="form-label">Respuestas
+					correctas</label> <input type="text" id="correct-answers"
+					name="correctAnswers" class="form-control"
+					placeholder="Separar por comas" required>
+			</div>
+			<div class="mb-3">
+				<label for="incorrect-answers" class="form-label">Respuestas
+					incorrectas</label> <input type="text" id="incorrect-answers"
+					name="incorrectAnswers" class="form-control"
+					placeholder="Separar por comas" required>
+			</div>
+			<button type="submit" class="mb-5 btn btn-light fw-bold">Guardar</button>
+		</form>
+
+		<form th:if="${stage == 'second' && questionType == 'TRUE_OR_FALSE'}"
+			th:action="@{/question/save}" method="post">
+			<input type="hidden" name="questionType" value="TRUE_OR_FALSE">
+			<input type="hidden" name="category" th:value="${category}">
+			<div class="mb-3">
+				<label for="question" class="form-label">Escribe la pregunta</label>
+				<input type="text" id="question" name="question"
+					class="form-control" required>
+			</div>
+			<div class="mb-3">
+				<label for="answer" class="form-label">Respuesta</label> <select
+					id="answer" name="answer" class="form-select">
+					<option value="true">Verdadero</option>
+					<option value="false">Falso</option>
+				</select>
+			</div>
+			<button type="submit" class="mb-5 btn btn-light fw-bold">Guardar</button>
+		</form>
+	</main>
+
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

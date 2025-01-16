@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{fragments/header :: head}"></div>
+
+<body class="bg-dark">
+	<div th:replace="~{fragments/navbar :: navbar}"></div>
+	<main class="container mt-5">
+		<h2>Editar Pregunta</h2>
+		<form th:action="@{/question/save}" method="post">
+			<input type="hidden" name="questionType" th:value="${questionType}" />
+			<input type="hidden" name="id" th:value="${question.id}" />
+
+			<div class="mb-3">
+				<label for="question" class="form-label text-light">Pregunta:</label>
+				<input type="text" id="question" name="question"
+					th:value="${question.question}" class="form-control" required />
+			</div>
+
+			<div class="mb-3">
+				<label for="category" class="form-label text-light">Categoría:</label>
+				<select id="category" name="category" th:value="${categories}"
+					class="form-control" required>
+					<option value="" disabled selected>Seleccione una
+						categoría</option>
+					<th:block th:each="category : ${categories}">
+						<option th:value="${category}" th:text="${category}"></option>
+					</th:block>
+				</select>
+			</div>
+
+
+			<div th:if="${isTrueOrFalse}">
+				<label for="answer" class="form-label text-light">Respuesta:</label>
+				<select id="answer" name="answer" class="form-select">
+					<option th:value="true" th:selected="${answer}">Verdadero</option>
+					<option th:value="false" th:selected="${!answer}">Falso</option>
+				</select>
+			</div>
+
+			<div th:if="${isMultipleChoice}">
+				<div class="mb-3">
+					<label for="correctAnswers" class="form-label text-light">Respuestas
+						Correctas:</label>
+					<textarea id="correctAnswers" name="correctAnswers"
+						class="form-control" rows="3"
+						th:text="${#strings.arrayJoin(correctAnswers, ',')}"></textarea>
+				</div>
+				<div class="mb-3">
+					<label for="incorrectAnswers" class="form-label text-light">Respuestas
+						Incorrectas:</label>
+					<textarea id="incorrectAnswers" name="incorrectAnswers"
+						class="form-control" rows="3"
+						th:text="${#strings.arrayJoin(incorrectAnswers, ',')}"></textarea>
+				</div>
+			</div>
+
+			<button type="submit" class="btn btn-success mt-4">Guardar
+				Cambios</button>
+			<a th:href="@{/question/all}" class="btn btn-light mt-4">Cancelar</a>
+		</form>
+	</main>
+	<div th:replace="~{fragments/scripts :: scripts}"></div>
+</body>
+</html>

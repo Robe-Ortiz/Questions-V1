@@ -1,0 +1,114 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  width: auto; 
+  height: auto;
+  padding: 20px; 
+}
+
+.profile-image {
+  width: 150px; 
+  height: 150px;
+  border-radius: 50%; 
+  object-fit: cover; 
+  border: 5px solid #ffcc00; 
+  margin-bottom: 20px; 
+  transition: transform 1s ease;
+   position: relative;
+}
+
+.profile-image:hover {
+  transform: scale(2); 
+   z-index: 10;
+}
+
+.welcome-message {
+  font-size: 2em;
+  color: #ffcc00;
+  opacity: 0;
+  animation: fadeIn 15s forwards;
+}
+
+.name-input {
+  background-color: transparent; 
+  color: #ffcc00;
+  border: none; 
+  padding: 5px;
+  text-align: center;  
+  width: 100%;  
+  box-sizing: border-box;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.profile-card {
+  background-color: #1c1c1c;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  width: 100%;  
+  max-width: 600px; 
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+
+.profile-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.profile-card h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.profile-card h4 {
+  font-size: 1.1em;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.edit-btn, .save-btn {
+  background-color: #ffcc00;
+  border: none;
+  color: #1c1c1c;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.edit-btn:hover, .save-btn:hover {
+  background-color: #ff6600;
+  transform: scale(1.05);
+}
+
+.edit-btn:focus, .save-btn:focus {
+  outline: none;
+}
+
+
+
+@media (max-width: 768px) {
+  .profile-container {
+    margin-top: 20px;
+  }
+  
+  .profile-card {
+    padding: 20px;
+    max-width: 90%;
+  }
+  
+  .profile-image {
+    width: 120px;
+    height: 120px;
+  }
+}
+}
